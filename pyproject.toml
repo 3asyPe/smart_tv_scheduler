@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "tv-test-task"
+version = "0.1.0"
+description = ""
+authors = ["Alex Kvasha <alex.kvasha.work@gmail.com>"]
+readme = "README.md"
+packages = [{include = "tv_test_task"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pydantic = "^2.3.0"
+apscheduler = "^3.10.4"
+croniter = "^1.4.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+pytest = "^7.4.2"
+pytest-mock = "^3.11.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = "."

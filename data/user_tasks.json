@@ -1,0 +1,10 @@
+{
+  "run_launch_application": {
+    "start_at": "0 7 * * *",
+    "function": "launch_application",
+    "params": {
+      "name": "Netflix"
+      },
+    "run_statuses": ["active", "standby"]
+  }
+}

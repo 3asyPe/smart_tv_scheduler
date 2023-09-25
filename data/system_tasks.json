@@ -1,0 +1,16 @@
+{
+  "run_analytics": {
+    "start_at": "0 * * * *",
+    "function": "analytics",
+    "params": {},
+    "run_statuses": [
+      "active"
+    ]
+  },
+  "run_check_for_software_updates": {
+    "start_at": "0 0 * * *",
+    "function": "check_for_software_updates",
+    "params": {},
+    "run_statuses": ["active", "standby"]
+  }
+}
