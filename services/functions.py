@@ -1,13 +1,19 @@
+from logging import getLogger
+
+
+logger = getLogger(__name__)
+
+
 def analytics():
-    print("Running analytics...")
+    logger.info("Running analytics...")
 
 
 def check_for_software_updates():
-    print("Checking for software updates...")
+    logger.info("Checking for software updates...")
 
 
 def launch_application(name: str):
-    print(f"Launching {name}...")
+    logger.info(f"Launching {name}...")
 
 
 TASKS = {

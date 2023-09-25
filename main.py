@@ -1,12 +1,18 @@
+import logging
 from time import sleep
 
+from config import config
 from models.task import Task
 from services.task_manager import TaskManager
+
+
+logging.basicConfig(level=config.LOG_LEVEL)
 
 
 if __name__ == "__main__":
     task_manager = TaskManager().start()
 
+    # Add some test tasks
     task_manager.create_task(
         Task(
             name="test",
@@ -29,7 +35,7 @@ if __name__ == "__main__":
         )
     )
 
-    sleep(10)
+    sleep(70)
 
     task_manager.delete_task(task_name="test")
 

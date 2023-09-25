@@ -1,8 +1,12 @@
 import json
+from logging import getLogger
 from config import config
 from typing import Optional
 from models.task import Task
 from services.scheduler import Scheduler
+
+
+logger = getLogger(__name__)
 
 
 class TaskManager:
@@ -13,6 +17,8 @@ class TaskManager:
         self.load_system_tasks()
         self.load_user_tasks()
         self.scheduler.run()
+
+        logger.info("Task manager started")
 
         return self
 
@@ -36,6 +42,8 @@ class TaskManager:
 
         self.scheduler.add_task(task)
 
+        logger.info(f"User created a task - {task.name}")
+
         return task
 
     def delete_task(self, task_name: str) -> None:
@@ -46,6 +54,8 @@ class TaskManager:
             f.write(json.dumps(tasks))
 
         self.scheduler.remove_task(task_name)
+
+        logger.info(f"User deleted a task - {task_name}")
 
     def _load_file(self, file_name: str) -> dict:
         with open(file_name, "a+") as file:

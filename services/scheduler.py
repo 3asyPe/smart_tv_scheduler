@@ -1,3 +1,5 @@
+from logging import getLogger
+
 from typing import Optional
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -6,6 +8,9 @@ from apscheduler.triggers.cron import CronTrigger
 from services.api import get_tv_status
 from models.task import Task
 from services.functions import TASKS
+
+
+logger = getLogger(__name__)
 
 
 class Scheduler:
@@ -45,11 +50,11 @@ class Scheduler:
         self.tasks.pop(task_name)
 
     def run_task(self, task: Task):
-        print(f"Running task {task.name}")
+        logger.info(f"Running task {task.name}")
         if get_tv_status() not in task.run_statuses:
             return
 
         if task.function not in TASKS:
-            print(f'Function "{task.function}" not found')
+            logger.error(f'Function "{task.function}" not found')
 
         TASKS[task.function](**task.params)
